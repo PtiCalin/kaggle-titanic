@@ -42,6 +42,16 @@ a valid submission file.
    data/test.csv
    ```
 
+   **Optional: Kaggle CLI download**
+
+   If you have the Kaggle API configured (`~/.kaggle/kaggle.json`), you can download the
+   data from the command line:
+
+   ```bash
+   kaggle competitions download -c titanic -p data
+   unzip -o data/titanic.zip -d data
+   ```
+
 4. **Run the baseline.**
 
    ```bash
