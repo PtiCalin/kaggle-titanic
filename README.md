@@ -11,6 +11,7 @@ a valid submission file.
 ├── data/                 # Place Kaggle train.csv/test.csv here (not committed)
 ├── output/               # Generated predictions
 ├── src/
+│   ├── predict.py        # Load a saved model and score a CSV
 │   └── train.py          # Baseline training + submission generation
 ├── requirements.txt
 └── README.md
@@ -42,6 +43,9 @@ a valid submission file.
    data/test.csv
    ```
 
+   If you keep the files in `data/titanic/` (e.g., after unzipping the Kaggle download),
+   the training script will detect them automatically.
+
    **Optional: Kaggle CLI download**
 
    If you have the Kaggle API configured (`~/.kaggle/kaggle.json`), you can download the
@@ -58,7 +62,17 @@ a valid submission file.
    python src/train.py --data-dir data --output-dir output
    ```
 
-5. **Submit to Kaggle.**
+   This will also save a reusable model artifact to `models/titanic_pipeline.joblib`.
+
+5. **Generate predictions from the saved model (optional).**
+
+   ```bash
+   python src/predict.py \
+     --model-path models/titanic_pipeline.joblib \
+     --input-csv data/test.csv \
+     --output-csv output/submission.csv
+   ```
+6. **Submit to Kaggle.**
 
    Upload `output/submission.csv` on the Kaggle submission page.
 
